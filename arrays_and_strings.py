@@ -6,7 +6,6 @@ def unique_characters(str):
         if c_str.count(template[k]) >= 2:
             return k, False
 
-
 # 1.2
 def permutation_check(str1,str2):
     if sorted(str1) != sorted(str2):
