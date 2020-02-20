@@ -1,23 +1,18 @@
 # 1.1 to find unique characters, do a list count of all alphabets. if count >=2 then not unique.
-def unique_characters(str):
-    c_str = str.lower()
+def unique_characters(str1):
+    c_str = str1.lower()
     template = 'abcdefghijklmnopqrstuvwxyz'
     for k in range(len(template)):
         if c_str.count(template[k]) >= 2:
-            return k, False
+            return template[k], False
 
 
-test_str = 'dsvnadnvkasnsdanfadf'
 # 1.2 pretty easy, sort string and check if they're equal
-def permutation_check(str1,str2):
+def permutation_check(str1, str2):
     if sorted(str1) != sorted(str2):
         return False
     else:
         return True
-
-t_str = 'derpatologist'
-t_str2 = 'tologderpaist'
-permutation_check(t_str,t_str2)
 
 
 # 1.3 strategy: transform string to list, then using enumerate find the idx
@@ -29,9 +24,6 @@ def char_replacement(str, to_replace, replacement):
         char_list[indices[g]] = replacement
     output = "".join(char_list)
     return output
-
-t_str = ' derp is derp derp'
-char_replacement(t_str, ' ', '%30')
 
 
 # 1.4 strategy: count number of odd alphabet counts. If odd num of odds palindrome = true, else = false.
@@ -51,11 +43,15 @@ def palindromic_check(str):
         return False
 
 
-# 1.5 strategy: 1) if == num characters 2) if abs(num_char(str1) - num_char(str2))==1, else FALSE
-# building on 1) enumerate match?
+# 1.5 strategy:
+# 1) if == num characters then compare each character
+# 2) if distance between characters is 1 then iteratively delete a single char and compare
+# 3) else return False
 def one_away(str1, str2):
-    roll_idx = [0] * min([len(str1),len(str2)])
-    if len(str1) == len(str2):
+    str1 = str1.lower()
+    str2 = str2.lower()
+    roll_idx = [0] * min([len(str1), len(str2)])
+    if len(str1) == len(str2):  # 1) if character length is equal
         for i in range(len(str1)):
             if str1[i] == str2[i]:
                 roll_idx[i] = 0
@@ -65,10 +61,18 @@ def one_away(str1, str2):
             return True
         else:
             return False
-    else:
-        print('error')
+    elif abs(len(str1) - len(str2)) == 1:  # 2) if character length is one difference
+        long_str = max([str1, str2], key=len)
+        short_str = min([str1, str2], key=len)
+        for b in range(len(long_str)):
+            mod_str = long_str.replace(long_str[b], '')
+            if mod_str == short_str:
+                return True
+    else:  # 3) else return false
+        return False
 
-one_away('derp','perp')
+
+
 
 
 
