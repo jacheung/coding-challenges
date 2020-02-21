@@ -1,10 +1,13 @@
+import numpy as np
+
 # 1.1 to find unique characters, do a list count of all alphabets. if count >=2 then not unique.
 def unique_characters(str1):
     c_str = str1.lower()
-    template = 'abcdefghijklmnopqrstuvwxyz'
-    for k in range(len(template)):
-        if c_str.count(template[k]) >= 2:
-            return template[k], False
+    for k in range(len(c_str)):
+        for g in range(k+1, len(c_str)):
+            if c_str[k] == c_str[g]:
+                return False
+    return True
 
 
 # 1.2 pretty easy, sort string and check if they're equal
@@ -37,7 +40,7 @@ def palindromic_check(str):
             odds_evens[1] = odds_evens[1]+1
         else:
             odds_evens[0] = odds_evens[0]+1
-    if odds_evens[0] % 2 != 0:
+    if odds_evens[0] % 2 != 0 or odds_evens[0] == 0:
         return True
     else:
         return False
@@ -72,7 +75,28 @@ def one_away(str1, str2):
         return False
 
 
+# 1.6 challenge: transform aaabbbccaa to a3b3c2a2
+def string_compression(str1):
+    idx = [0] * len(str1)
+    for i in range(len(str1)-1):
+        if str1[i] != str1[i+1]:
+            idx[i] = 1
+    break_points = [i+1 for i, x in enumerate(idx) if x == 1]
+    break_points.insert(0, 0)
+    break_points.append(len(str1))
+    number_counts = list(np.diff(break_points))
+    final_string = ""
+    for i in range(len(break_points)-1):
+        final_string += str1[break_points[i]] + str(number_counts[i])
+    if len(final_string) < len(str1):
+        return final_string
+    else:
+        print('cannot compress string further')
 
 
-
+def moving_average(array):
+    new_array = [0] * len(array)
+    for i in range(len(array)):
+        new_array[i] = sum(array[0:i+1]) / (i+1)
+    return new_array
 
