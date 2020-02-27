@@ -100,3 +100,32 @@ def moving_average(array):
         new_array[i] = sum(array[0:i+1]) / (i+1)
     return new_array
 
+def heightChecker(heights):
+    """
+    :type heights: List[int]
+    :rtype: int
+    """
+    number_changes = 0
+    s_heights = sorted(heights)
+    for k in range(len(heights)):
+        if heights[k] - s_heights[k] != 0:
+            number_changes += 1
+    return number_changes
+
+
+def uniqueOccurrences(arr):
+    occurence_list = []
+    unique_list = []
+    for x in arr:
+        if x not in unique_list:
+            unique_list.append(x)
+    for b in unique_list:
+        if arr.count(b) not in occurence_list:
+            occurence_list.append(arr.count(b))
+        else:
+            return False
+    return True
+
+
+
+
