@@ -40,6 +40,7 @@ def uniqueOccurrences(arr):
     return True
 
 
+# a default dict lets you add values not encountered before without a KeyError
 def containsNearbyDuplicates(nums, k):
     d, flag = collections.defaultdict(int), False  # hashset, flag
     for i, a in enumerate(nums):
