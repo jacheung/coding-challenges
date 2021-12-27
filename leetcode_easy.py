@@ -70,4 +70,13 @@ class Solution:
                     return (idx, matched_idx[0])
             if len(matched_idx) == 2: 
                 return matched_idx                   
-                
+
+#hash table for time complexity O(n) 
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hash_table = {}
+        for idx, val in enumerate(nums): 
+            if hash_table.get(val) != None:
+                return [idx, hash_table.get(val)]
+            diff = target-val
+            hash_table[diff] = idx
