@@ -49,3 +49,13 @@ def containsNearbyDuplicates(nums, k):
                 flag = True
         d[a] = i  # value: position
     return flag
+
+# twoSum Easy
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for idx_one, val_one in enumerate(nums): 
+            for idx_two, val_two in enumerate(nums):
+                if idx_one != idx_two:
+                    sum_value = val_one+val_two 
+                    if sum_value == target:
+                        return [idx_one, idx_two]
