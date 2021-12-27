@@ -59,3 +59,15 @@ class Solution:
                     sum_value = val_one+val_two 
                     if sum_value == target:
                         return [idx_one, idx_two]
+                    
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        base_list = [target - x for x in nums]
+        for idx, value in enumerate(nums): 
+            matched_idx = [i for i,x in enumerate(base_list) if x==value]
+            if len(matched_idx) == 1:
+                if idx != matched_idx[0]:
+                    return (idx, matched_idx[0])
+            if len(matched_idx) == 2: 
+                return matched_idx                   
+                
