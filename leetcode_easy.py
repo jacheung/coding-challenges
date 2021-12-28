@@ -80,3 +80,14 @@ class Solution:
                 return [idx, hash_table.get(val)]
             diff = target-val
             hash_table[diff] = idx
+
+# palindromic solve via string then brute force.
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        string_x = str(x)
+        if len(string_x) == 1:
+            return True
+        for i in range(int(len(string_x)/2) + 1):
+            if string_x[0+i] != string_x[-1-i]:
+                return False
+        return True
